@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog Detail</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/style.js' %}"></script>
+    </head>
+
+    <body>
+        <header>
+            <h1 class="Name"><a href="{% url 'home' %}" class="Navi">Beitrag</a></h1>
+            <div class="wrapper">
+                <div class="hamburger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <nav>
+                    <div class="inner">
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'message' %}">Message</a></li>
+                            <li><a href="{% url 'list' %}">List</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="logout">
+            <a href="{% url 'logout' %}" id="logout">ログアウト</a>
+        </div>
+        <h1 class="bg-info text-white">Message Detail</h1>
+
+        <div class="submit">
+            <ul class="submit">
+                <li>
+                    <p class="text-info"><a href="{% url 'list' %}">{{ blog.title }}</a></p>
+                </li>
+                <li id="date">
+                    <p class="text-secondary_day">{{ blog.date }}</p>
+                </li>
+                
+                <li id="date">
+                    <div class="detail">
+                        {{ blog.text | linebreaksbr }}
+                    </div>            
+                </li>
+                <li>
+                    <div class="user_name">
+                        <p>From: <span id="user_name">{{ user.username }}</span></p>
+                    </div>
+                </li>
+                <li></li>
+            </ul>
+        </div>
+            
+        {% if blog %}
+        {% for blog in blogs %}
+        <div class="card mb-3">
+          <div class="card-header">
+            <a href="{% url 'detail' blog.id %}">{{ blog.title }}</a>
+            <small>[{{ blog.posted_at }}]</small>
+            
+          </div>
+        </div>
+
+        {% endfor %}
+        {% else %}
+        <p>No article.</p>
+        {% endif %}
+
+        <br/>
+        
+        {% for comment in comments %}
+            <div class="comment">
+                <p id="name">From: <span id="comment_user">{{ user.username }}</span></p>
+                <div class="mycomment">
+                    {% if current_user.id == user.user_id %}
+                        <p id="com"><a class="link_2" href="{% url 'edit_comment' comment.id %}">{{ comment.text | linebreaksbr }}</a></p>
+                    {% else %}
+                        <p id="com">{{ comment.text | linebreaksbr }}</p>
+                    {% endif %}
+                </div>
+                <small class="text-secondary_day">{{ comment.posted_at }}</small>
+                <!--<a class="link_2" href="{% url 'delete_comment' comment.id %}"><i class="fas fa-trash"></i>Delete</a></span>-->
+            </div>
+        {% endfor %}
+            
+
+        <div class="form">
+            <form action="" method="POST" class="send_message">
+                {% csrf_token %}
+
+                <div class="submit">
+                    <ul class="submit">
+                        <li>
+                            <label for="text" class="message_1">Comment:</label>
+                            <textarea placeholder="Message…" id="comment" name="text" tabindex="3"></textarea>
+                        </li>
+                    </ul>
+                </div>
+            
+                <input type="submit" value="Comment" id="submit"/>
+
+            </form>
+        </div>
+
+        <footer>
+            <p>© 情報連携デザイン演習ⅣA</p>
+        </footer>
+    </body>
+</html>

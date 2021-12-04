@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Message</title>
+        <meta chartset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/style.js' %}"></script>
+    </head>
+    <body>
+        <header>
+            <h1 class="Name"><a href="{% url 'home' %}" class="Navi">Beitrag</a></h1>
+            <div class="wrapper">
+                <div class="hamburger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <nav>
+                    <div class="inner">
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'message' %}" class="current">Message</a></li>
+                            <li><a href="{% url 'list' %}">List</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="logout">
+            <a href="{% url 'logout' %}" id="logout">ログアウト</a>
+        </div>
+
+        <div class="form">
+            <h1 class="bg-info text-white">Edit Comment</h1>
+
+            <div class="form">
+                <form action="{% url 'edit_comment' comment.id %}" method="POST" class="send_message">
+                    {% csrf_token %}
+    
+                    <div class="submit_2">
+                        <ul class="submit_2">
+                            <li>
+                                <label for="text" class="message_2">Comment:</label>
+                                <textarea placeholder="Message…" id="comment_2" name="text" tabindex="3">{{comment.text}}</textarea>
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <input type="submit" value="Edit" id="submit"/>
+                    <td><a class="link_3" href="{% url 'delete_comment' comment.id %}"><i class="fas fa-trash"></i>Delete</a></td>
+    
+                </form>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 情報連携デザイン演習ⅣA</p>
+        </footer>
+    </body>
+</html>

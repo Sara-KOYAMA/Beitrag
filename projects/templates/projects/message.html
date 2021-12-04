@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Message</title>
+        <meta chartset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/style.js' %}"></script>
+    </head>
+    <body>
+        <header>
+            <h1 class="Name"><a href="{% url 'home' %}" class="Navi">Beitrag</a></h1>
+            <div class="wrapper">
+                <div class="hamburger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <nav>
+                    <div class="inner">
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'message' %}" class="current">Message</a></li>
+                            <li><a href="{% url 'list' %}">List</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="logout">
+            <a href="{% url 'logout' %}" id="logout">ログアウト</a>
+        </div>
+
+        <div class="form">
+            <h1 class="bg-info text-white">Message</h1>
+            <form action="{% url 'message' %}" method="POST" class="send_message">
+                {% csrf_token %}
+
+                <div class="submit">
+                    <ul class="submit">
+                        <li>
+                            <label for="title" class="message_1">Title:</label>
+                            <input type="text" placeholder="Title" id="name" name="title" tabindex="1"/>
+                        </li>
+                        <li>
+                            <label for="text" class="message_1">Text:</label>
+                            <textarea placeholder="Message…" id="message" name="text" tabindex="3"></textarea>
+                        </li>
+                    </ul>
+                </div>
+            
+                <input type="submit" value="Send Message" id="submit"/>
+
+            </form>
+        </div>
+        
+        <footer>
+            <p>© 情報連携デザイン演習ⅣA</p>
+        </footer>
+    </body>
+</html>

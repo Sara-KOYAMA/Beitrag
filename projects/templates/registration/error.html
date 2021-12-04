@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>error</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/style.js' %}"></script>
+    </head>
+  <body>
+    <header>
+      <h1 class="Name"><a href="{% url 'home' %}" class="Navi">Beitrag</a></h1>
+      <div class="wrapper">
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <nav>
+              <div class="inner">
+                  <ul>
+                      <li><a href="{% url 'home' %}">Home</a></li>
+                      <li><a href="{% url 'login' %}">Login</a></li>
+                      <li><a href="{% url 'create' %}">Accounts</a></li>
+                  </ul>
+              </div>
+          </nav>
+      </div>
+    </header>
+    <h1 class="bg-info text-white">Error</h1>
+    <p id="form_error">
+        このサイトはINIAD生限定です。<br>
+        INIADのメールアドレスで<br>
+        アカウント登録して下さい。
+    </p>
+
+
+    <footer>
+      <p>© 情報連携デザイン演習ⅣA</p>
+    </footer>
+  </body>
+</html>

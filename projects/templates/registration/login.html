@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script type="text/javascript" src="{% static 'js/style.js' %}"></script>
+  </head>
+  <body>
+    <header>
+      <h1 class="Name"><a href="{% url 'home' %}" class="Navi">Beitrag</a></h1>
+      <div class="wrapper">
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <nav>
+              <div class="inner">
+                  <ul>
+                      <li><a href="{% url 'home' %}">Home</a></li>
+                      <li><a href="{% url 'login' %}" class="current">Login</a></li>
+                      <li><a href="{% url 'create' %}">Accounts</a></li>
+                  </ul>
+              </div>
+          </nav>
+      </div>
+    </header>
+
+    <div class="login">
+      <a href="{% url 'login' %}" id="login">ログイン</a>
+    </div>
+
+    <h1 class="bg-info text-white">Login</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="submit">
+        <ul class="submit">
+            <li>
+                <label for="title" class="message">User_Name:</label>
+                <input type="text" placeholder="Name" id="name" name="username" required tabindex="1"/>
+            </li>
+            <li>
+              <label for="title" class="message">Password:</label>
+              <input type="password" placeholder="Password" id="name" name="password" required tabindex="1"/>
+            </li>
+        </ul>
+      </div>
+      <!--{{ form.as_p }}-->
+
+      {% if form.errors %}
+      <p id="form_error">ユーザー名または
+        パスワードが違います。<br>
+      正しいユーザー情報を入力して下さい。</p>
+      {% endif %}
+     
+
+      <input type="submit" value="Login"  class="btn btn-info">
+
+      
+    </form>
+    <footer>
+      <p>© 情報連携デザイン演習ⅣA</p>
+    </footer>
+  </body>
+</html>

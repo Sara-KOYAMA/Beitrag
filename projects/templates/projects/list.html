@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog's List Page</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script type="text/javascript" src="{% static 'js/style.js' %}"></script>
+    </head>
+
+    <body>
+
+        <header>
+            <h1 class="Name"><a href="{% url 'home' %}" class="Navi">Beitrag</a></h1>
+            <div class="wrapper">
+                <div class="hamburger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <nav>
+                    <div class="inner">
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'message' %}">Message</a></li>
+                            <li><a href="{% url 'list' %}" class="current">List</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="logout">
+            <a href="{% url 'logout' %}" id="logout">ログアウト</a>
+        </div>
+
+        <h1 class="bg-info text-white">Messages List</h1>
+    
+        
+
+        <hr>
+          
+
+        <form action="{% url 'create' %}" method="post">
+            <table><!--style="color: black; background-color:rgb(253, 199, 207); border-color:crimson;"-->
+                {% for Blog in blog %}
+                <tr>
+                
+                    <td id="link_title"><a  href="{% url 'detail' Blog.id %}" class="link_title">{{ Blog.title }}</a></td>
+                    <td class="text-secondary_day"><small>{{ Blog.date }}</small></td>
+                    <td class="text-secondary">{{ Blog.text }}</td>
+                    <td id="from"><p>From: <span>{{ user.username }}</span></p></td>
+                    
+
+                    {% if current_user.id == user.user_id %}
+                        <!--<td>
+                            <button onclick="location.href='{% url 'edit' Blog.id %}'" class="btn btn--blue_2">
+                                Edit
+                            </button>
+                        </td>
+                        <td>
+                            <button onclick="location.href='{% url 'delete' Blog.id %}'" class="btn btn--blue_2">
+                                Delete
+                            </button>
+                        </td>-->
+                  
+                        <!--<div class="clear"></div>-->
+                        <td><a class="link" href="{% url 'edit' Blog.id %}">Edit</a></td>
+                        <td><a class="link" href="{% url 'delete' Blog.id %}"><i class="fas fa-trash"></i>Delete</a></td>
+                    {% endif %}
+                
+                </tr>
+                
+
+                {% endfor %}
+            </table>
+        </form>
+        <br/>
+        <hr/>
+
+
+        <footer>
+            <p>© 情報連携デザイン演習ⅣA</p>
+        </footer>
+        
+    </body>
+</html>
