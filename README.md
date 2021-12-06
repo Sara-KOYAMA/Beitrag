@@ -2,4 +2,4 @@
 東洋大学情報連携学部情報連携学科(INAD)の生徒限定のコミュニケーションサイト。学部生の持つINIADのメールアドレスでユーザー登録することで、利用できるスマートフォン用のサイトです。  制作期間：約1ヶ月（2021年6月から2021年7月）
 
 ## スクリーンショット
-![home](https://user-images.githubusercontent.com/92298809/144786896-f2bbdcb6-ff7d-46e3-a9a9-4c339e2f1574.png)
+![home](https://user-images.githubusercontent.com/92298809/144787288-48b6ae1e-a9b3-43b7-8eba-f4edb8999e67.png)
